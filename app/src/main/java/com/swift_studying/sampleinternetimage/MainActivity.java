@@ -34,7 +34,19 @@ public class MainActivity extends Activity {
         //setSupportActionBar(toolbar);
         ImageView imageView = (ImageView)findViewById(R.id.imageView);
 
-        Uri uri = Uri.parse("http://n302.herokuapp.com/memo"); //http://n302.herokuapp.com/
+        //POST
+        try {
+            new HttpPostTask().execute(new URL("http://n302.herokuapp.com/memo"));
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        /* Uri uri = Uri.parse(""); //http://n302.herokuapp.com/
+        Uri.Builder builder = uri.buildUpon();
+        AsyncTaskHttpPost task = new AsyncTaskHttpPost(imageView);
+        task.execute(builder); */
+
+        //GET
+        Uri uri = Uri.parse("http://n302.herokuapp.com/check"); //http://n302.herokuapp.com/
         Uri.Builder builder = uri.buildUpon();
         AsyncTaskHttpRequest task = new AsyncTaskHttpRequest(imageView);
         task.execute(builder);
